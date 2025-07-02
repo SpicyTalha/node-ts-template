@@ -10,8 +10,7 @@
 // in a modular way, making it easier to maintain and scale your application.
 
 import type { Application, Router } from "express";
-const _routes: Array<[string, Router]> = [
-];
+const _routes: Array<[string, Router]> = [];
 
 export const routes = (app: Application): void => {
   _routes.map((route) => {

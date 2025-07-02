@@ -1,6 +1,6 @@
 import express, { type Express, type Request, type Response } from "express";
-import {logger} from "./libs/logger";
-import {routes} from "./routes";
+import { logger } from "./libs/logger";
+import { routes } from "./routes";
 
 const app: Express = express();
 const initializeServer = async () => {
@@ -25,17 +25,17 @@ app.use(express.urlencoded({ extended: true }));
 
 routes(app);
 
-app.get("/api/", (_req: Request, res: Response) => {
+app.get("/api/", (req: Request, res: Response) => {
   try {
     logger.info("HEALTH -> GET_HEALTH = Health OK! Server is running");
-    return res.status(200).send({
+    res.status(200).send({
       status: 200,
       success: true,
       message: "Health OK! Server is running",
     });
   } catch (err) {
     logger.error(`HEALTH -> GET_HEALTH = ${(err as Error).message}`);
-    return res.status(500).send({
+    res.status(500).send({
       status: 500,
       success: false,
       error: { code: 500, message: (err as Error).message },
